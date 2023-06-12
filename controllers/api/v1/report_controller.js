@@ -43,7 +43,6 @@ module.exports.all_reports = async function (req, res) {
   }
 };
 
-
 //send report by status
 module.exports.report_by_status = async (req, res) => {
   try {
