@@ -32,10 +32,8 @@ module.exports.create_report = async function (req, res) {
 //find patient with id and send report
 module.exports.all_reports = async function (req, res) {
   try {
-    const reports = Report.find({ patient: req.params.id });
-    reports.exec(function (err, report) {
-      return res.send(report);
-    });
+    const reports = await Report.find({ patient: req.params.id });
+    return res.send(reports);
   } catch (err) {
     // Error handling
     return res.status(401).json({
@@ -45,13 +43,12 @@ module.exports.all_reports = async function (req, res) {
   }
 };
 
+
 //send report by status
 module.exports.report_by_status = async (req, res) => {
   try {
-    const reports = Report.find({ status: req.params.status });
-    reports.exec(function (err, rep) {
-      return res.send(rep);
-    });
+    const reports = await Report.find({ status: req.params.status });
+    return res.send(reports);
   } catch (err) {
     return res.status(500).json({
       message: err.message,
